@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Portfolio</title>
+<meta name="description" content="My Portfolio - profil mahasiswa Sekolah Tinggi Multimedia Yogyakarta.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%230D2D4E'/%3E%3Ctext x='32' y='44' font-size='32' font-weight='800' text-anchor='middle' fill='%23F59E0B' font-family='Arial'%3EB%3C/text%3E%3C/svg%3E">
+<style>
+:root{
+  --bg:#EEF3F9; --card:rgba(255,255,255,.72); --solid:#fff; --text:#0D2D4E; --muted:#5B6D80;
+  --line:rgba(13,45,78,.1); --accent:#D97706; --blue:#0054A6; --sky:#0EA5E9;
+  --shadow:0 12px 40px rgba(13,45,78,.10); --blob1:#bfdcff; --blob2:#ffe2b8;
+}
+:root[data-theme="dark"]{
+  --bg:#06162A; --card:rgba(16,40,70,.6); --solid:#0d2540; --text:#EAF2F8; --muted:#9db2c7;
+  --line:rgba(255,255,255,.1); --accent:#F59E0B; --blue:#4da3ff; --sky:#38bdf8;
+  --shadow:0 12px 40px rgba(0,0,0,.45); --blob1:#0b3a6e; --blob2:#5a3a08;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;background:var(--bg);color:var(--text);
+  min-height:100vh;padding:28px 18px 40px;line-height:1.55;transition:background .4s,color .4s;overflow-x:hidden;position:relative}
+.blob{position:fixed;width:460px;height:460px;border-radius:50%;filter:blur(90px);opacity:.75;z-index:0;transition:background .4s;animation:drift 14s ease-in-out infinite alternate}
+.b1{background:var(--blob1);top:-120px;left:-100px}.b2{background:var(--blob2);bottom:-140px;right:-100px;animation-delay:-6s}
+@keyframes drift{to{transform:translate(60px,40px) scale(1.12)}}
+#spot{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:radial-gradient(420px circle at var(--x,50%) var(--y,30%),rgba(14,165,233,.13),transparent 70%)}
+.wrap{position:relative;z-index:1;max-width:980px;margin:auto}
+
+header{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.brand{font-weight:800;letter-spacing:.02em;display:flex;align-items:center;gap:10px}
+.brand i{width:34px;height:34px;border-radius:11px;background:var(--text);color:var(--accent);display:grid;place-items:center;font-style:normal;font-weight:800}
+.sw{width:62px;height:32px;border-radius:99px;border:1px solid var(--line);background:var(--card);cursor:pointer;position:relative;backdrop-filter:blur(12px);flex:none}
+.sw::after{content:"☀️";position:absolute;top:3px;left:4px;width:24px;height:24px;border-radius:50%;background:var(--solid);display:grid;place-items:center;font-size:.8rem;box-shadow:0 2px 6px rgba(0,0,0,.2);transition:transform .35s cubic-bezier(.5,1.6,.5,1)}
+:root[data-theme="dark"] .sw::after{content:"🌙";transform:translateX(30px)}
+
+.grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:26px;backdrop-filter:blur(16px);
+  box-shadow:var(--shadow);transition:transform .25s,border-color .25s;opacity:0;transform:translateY(24px);animation:up .7s forwards}
+.box:hover{border-color:var(--sky)}
+@keyframes up{to{opacity:1;transform:none}}
+.box:nth-child(1){animation-delay:.05s}.box:nth-child(2){animation-delay:.15s}.box:nth-child(3){animation-delay:.25s}
+.box:nth-child(4){animation-delay:.35s}.box:nth-child(5){animation-delay:.45s}.box:nth-child(6){animation-delay:.55s}
+.label{font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.hero{grid-column:span 6;display:flex;gap:32px;align-items:center}
+.about{grid-column:span 3}.info{grid-column:span 3}
+.soc,.hobi{grid-column:span 6}
+.links{display:grid;grid-template-columns:1fr 1fr;gap:12px}.links .link{margin-top:0}
+
+.hero h1{font-size:clamp(1.9rem,4.4vw,2.9rem);line-height:1.08;letter-spacing:-.03em;font-weight:800}
+.hero h1 span{background:linear-gradient(90deg,var(--blue),var(--sky));-webkit-background-clip:text;background-clip:text;color:transparent}
+.typed{margin-top:10px;font-weight:600;color:var(--accent);min-height:1.7em}
+.typed::after{content:"";display:inline-block;width:2px;height:1.1em;background:var(--accent);margin-left:3px;vertical-align:-.15em;animation:bl 1s steps(1) infinite}
+@keyframes bl{50%{opacity:0}}
+.hero p{margin-top:8px;color:var(--muted);max-width:430px}
+
+.avatar{flex:none;width:170px;height:170px;border-radius:50%;padding:6px;background:linear-gradient(135deg,var(--sky),var(--accent));
+  box-shadow:0 14px 34px rgba(13,45,78,.25);transition:transform .15s ease-out}
+.avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;display:block;border:4px solid var(--solid)}
+
+.about p{color:var(--muted)}
+.row{display:flex;justify-content:space-between;gap:14px;padding:11px 0;border-bottom:1px solid var(--line);font-size:.93rem}
+.row:last-child{border:0}.row span{color:var(--muted)}.row b{text-align:right;font-weight:600}
+.row a{color:var(--blue);text-decoration:none}.row a:hover{text-decoration:underline}
+
+.link{display:flex;align-items:center;gap:14px;padding:14px;border-radius:18px;border:1px solid var(--line);background:var(--solid);
+  text-decoration:none;color:inherit;cursor:pointer;width:100%;font:inherit;text-align:left;margin-top:10px;transition:transform .2s,box-shadow .2s}
+.link:hover{transform:translateY(-3px);box-shadow:0 10px 24px rgba(13,45,78,.15)}
+.ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:#fff;flex:none}
+.ig{background:linear-gradient(45deg,#f9a03c,#e1306c,#833ab4)}.dc{background:#5865F2}
+.link small{display:block;color:var(--muted);font-size:.78rem}.link b{font-size:.98rem}
+.arrow{margin-left:auto;color:var(--muted);transition:transform .2s}.link:hover .arrow{transform:translateX(4px)}
+
+.chips{display:flex;flex-wrap:wrap;gap:12px}
+.chip{padding:12px 20px;border-radius:99px;background:var(--solid);border:1px solid var(--line);font-weight:600;cursor:default;
+  transition:transform .25s cubic-bezier(.5,1.8,.5,1),background .2s,color .2s}
+.chip:hover{transform:translateY(-6px) rotate(-2deg);background:var(--accent);color:#fff;border-color:transparent}
+
+footer{text-align:center;margin-top:26px;color:var(--muted);font-size:.82rem}
+#toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,100px);background:var(--text);color:var(--bg);padding:12px 22px;border-radius:14px;font-weight:600;z-index:10;transition:transform .35s}
+#toast.on{transform:translate(-50%,0)}
+
+@media(max-width:820px){
+  .about,.info{grid-column:span 6}
+  .hero{flex-direction:column;align-items:center;text-align:center}.hero p{margin-inline:auto}.links{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.box{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="blob b1"></div><div class="blob b2"></div><div id="spot"></div>
+
+<div class="wrap">
+  <header>
+    <div class="brand"><i>P</i> My Portfolio</div>
+    <button class="sw" id="sw" aria-label="Ganti mode terang atau gelap"></button>
+  </header>
+
+  <main class="grid">
+    <!-- PERKENALAN + FOTO PROFIL (foto tertanam di src) -->
+    <section class="box hero">
+      <div class="avatar" id="avatar"><img alt="Foto profil Bimo Fajar Pambudi" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAwICQsJCAwLCgsODQwOEh4UEhEREiUbHBYeLCcuLisnKyoxN0Y7MTRCNCorPVM+QkhKTk9OLztWXFVMW0ZNTkv/2wBDAQ0ODhIQEiQUFCRLMisyS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0v/wAARCADIAMgDASIAAhEBAxEB/8QAGgAAAgMBAQAAAAAAAAAAAAAAAwQAAgUBBv/EADcQAAICAQMCBQIEBAYDAQEAAAECAxEABBIhMUEFEyJRYRRxMkKBkSNSsdEGFTOhweEkYvCS8f/EABkBAAMBAQEAAAAAAAAAAAAAAAABAgMEBf/EACQRAQEBAQACAwABBAMAAAAAAAABEQIhMQMSQVEEEyIyQmFx/9oADAMBAAIRAxEAPwDz8KxqDdgKLJwiFw3mC1DUBQvt0Px84JnE7ebItnqQorLIqeauxnAL8KfbtnMUNpFGYUYqWKKVYX+2caIrFQIPQ8dsUadkkIoqenx98sZJQo3Kxs7Tiu/oMiGZwJIwSVNdTuI96xj/ACvWeX5rxNtHCjbR49xicWpkkDoWdCOoNLwP69M0IvH5IdHIEYuZG/G3qZR+hx8yfpR56WklZdpKk032wSQmKZ42/LyD1sHGJnDy2CC18Dbwfk5ZG8xQ20FxxQ7g5YA0kcbOoYWBuJ44wunmkaQhQqRr6eB1+cK8PkxSFCeho/fOQbthZVFg0eO+I/wPVPGs8Zcl3ItVJuv0wkLahVsEbb4LH8OW8gRG1AMsh7gE1/xnJd+9NzBUPUdLxFA44nYoZHB+OuGkhVKN+q7o5XasoVUQ+nit1X8519Q+nUKgINX0A5wXFlXclFgEAJNd846KYwELqCLJBwf1RaLmiatq/tizSAEqVNf1OPKPKs8x5crsbrfXARSoSCUZibPHf5w+pQelU3W/Uhe2L2qRFRuDAf73lSJaE4MKwbRTugst1xQTSCQlipXoT7Y6jM1xMFCxjbvccXnG0cbKXZ6XpVAX8jBV530Fp5N8jFgQRwOe2G3AN/D4BPNdzgwiRITv230Hc5yZ1K7FXp3GTiMXZxyCBuv9hgpghmViCX7MOKzsh2oAQPY84IBklUyGgwPIPIGOQzU0g6MtMx6qOVPzkwChV4sFSfUD7ZMeGuhI9IYKpBonqcvpN51OnLceoVXfG00y+Ugan6ncDQwmh0/lTRysPRyBR/ETmf2iZ7JbpPq2UIz0x6C8diDjzHet4raCOPn9cJqJS5tBS+y4qZkjBLPRPTizitVmmYtW8E6zNHHMygjlNw574hqZXg1ZkSNRFL1SqW/ce36Y3pXhnpROIyOKIJJwzaWNxzqVNHncpGVKWMyUQwRO8RCs/pN9axXaJZFjVSDfW8f1mkR/SJFYrzQNYghRHpiwKjhh1GVptFyhhWAlgwoVXOVYhNp3bQa5GLDV+fLuUsDuqm53HCyRvI5LnYp4AFktk/8ApahRzIW89NpXgntgVlr1I29Be0FQSf7Z13jTdF5ZG7r2wSILLb+V5DHgY4B11e1TSUz9LHODKtJIztv9iAeQcLpEZtzuLJ4BPbLmOYihsLdDR/tj2GV2zISyA3X2r74WZ7BkcMSOnN3fvnZFlCUtFenXg4CV2FKjEcX1vnD2PbnmbQZA4VjwLwCTPJOtnguBimoLhQJASLu8LoFJ1cQK2AwOXngSHdYz+bcfQGzYwTTOmo2SKQSQCTzV4adZX9NgAE9cJMqhw8vDbVoH2rrk6LVeEbcVY7R3wZYsd7E0e3tl4W3M7EGhQ4OWiQyAstk3R4vETkTKaZlbjp8ZzbvlPAI7/bGBp17eo9OP6ZRdHKlii/XjDQWYIsbVbFjQOTDzo67d0dD8xGTHpiPK/wBQP4gZDQ2qe2PaSV5JYlbhI23DiqUDMZKkfbDdH5vNeBmiiKrZU
